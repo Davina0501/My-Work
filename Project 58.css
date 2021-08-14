@@ -1,0 +1,45 @@
+body {
+    font-size: 20px;
+    font-family:monospace;
+    font-style: oblique;
+    text-align: center;
+    color: fuchsia;
+    background:linear-gradient(#fac0ed 0%,#c2e3fc 100%)
+}
+
+.menu{
+    list-style:none;
+    font-family:cursive;
+    float:right;
+    top:10px;
+    right:30px;
+    cursor:pointer;
+    color:lightpink
+}
+
+iframe{
+border-width:thick;
+    border-color:skyblue;
+    border-style:dotted;
+    
+}
+
+h1{
+  font-size:20px;
+    margin-top:100px;
+    
+}
+
+
+img:hover{
+    
+transform: scale(0.9);    
+border-width:thick;
+    border-color:magenta;
+    
+}
+
+
+.link{
+    float:left;
+}
