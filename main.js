@@ -1,49 +1,38 @@
-var names_of_people = [];
-    
-function submit()
-{
-    var GuestName = document.getElementById("name1").value;
-	// use the push function as - names_of_people.push(GuestName);
-    console.log (names_of_people.push(GuestName); 
-    console.log(names_of_people);
-    var lenght_of_name = names_of_people.length;
-    console.log(lenght_of_name);
-	document.getElementById("display_name").innerHTML=names_of_people.toString();
-   }
+var mouseEvent="empty";
+var lastpositionofx,lastpostitionofy;
+canvas=document.getElementById("MyCanvas");
+cpx=canvas.getContext("2d");
+color="black";
+widthofline="1"
+canvas.addEventListener("mousedown",mymousedown);
+function mymousedown(e){
+    color=document.getElementById("color").value;
+    widthofline=document.getElementById("widthofline").value;
+    mouseEvent="mousedown";
+}
+canvas.addEventListener("mousemove",mymousmove);
+function mymousemove(e){
+    currentpositionofmousex = e.clientX - canvas.offsetLeft;
+    currentpositionofmousey = e.clientY - canvas.offsetLeft;
+    if (mouseEvent == "mouseDown") { 
+        ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = widthofline;
+        console.log("Last position of x and y coordinates = "); 
+        console.log("x = " + lastpositionofx + "y = " + lastpositionofy); ctx.moveTo(lastpositionofx, lastpositionofy);
+        console.log("Current position of x and y coordinates = "); console.log("x = " + currentpositionofmousex + "y = " + currentpositionofmousey);
+        ctx.lineTo(currentpositionofmousex, currentpositionofmousey); ctx.stroke(); 
+}
+lastpositionofx="currentpositionofmousex";
+lastpositionofy="currentpositionofmousey";
+}
+canvas.addEventListener("mouseup",mymouseup);
+function mymouseup(e){
+    mouseEvent="mouseup";
+}
+canvas.addEventListener("mouseleave",mymouseleave);
+function mymouseleave(e){
+    mouseEvent="mouseleave";
+}
+function cleararea(){
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-
-
-function show()
-{
-	var i= names_of_people.join("<br>");
-	console.log(names_of_people);
-	document.getElementById("p1").innerHTML=i.toString();
-	document.getElementById("sort_button").style.display="block";
-	// display the name in the id= sort_button
-	}
-
-
-function sorting()
-	{
-		names_of_people           // add the sort function
-		// .sort();
-		var i= names_of_people.join("<br>");
-		console.log(names_of_people);		
-		document.getElementById("sorted").innerHTML=i.toString();
-		}
-
-
-function searching()
-{
-	var s= document.getElementById("s1").value;
-	var found=0;
-	var j;
-	for(j=0; j<names_of_people.length; j++)
-		{
-			if(s==names_of_people[j]){
-				found=found+1;
-			}	
-		}
-	document.getElementById("p2").innerHTML="name found "+found+" time/s";
-	console.log("found name "+found+" time/s");
 }
