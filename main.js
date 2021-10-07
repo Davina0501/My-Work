@@ -10,7 +10,7 @@ function mymousedown(e){
     widthofline=document.getElementById("widthofline").value;
     mouseEvent="mousedown";
 }
-canvas.addEventListener("mousemove",mymousmove);
+canvas.addEventListener("mousemove",mymousemove);
 function mymousemove(e){
     currentpositionofmousex = e.clientX - canvas.offsetLeft;
     currentpositionofmousey = e.clientY - canvas.offsetLeft;
