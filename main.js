@@ -1,123 +1,49 @@
+      
+Webcam.attach( '#camera' );
 
-var canvas = new fabric.Canvas('myCanvas');
-ball_y=0;
-ball_x=0;
-hole_y=400;
-hole_x=800;
+camera = document.getElementById("camera");
+      
+  Webcam.set({
+    width:350,
+    height:300,
+    image_format : 'png',
+    png_quality:90
+  });
 
-block_image_width = 5;
-block_image_height = 5;
-
-function load_img(){
-	fabric.Image.fromURL("golf-h.png", function(Img) {
-		hole_obj = Img;
-		hole_obj.scaleToWidth(50);
-		hole_obj.scaleToHeight(50);
-		hole_obj.set({
-			top:hole_y,
-			left:hole_x
-		});
-		canvas.add(hole_obj);
-		});
-	new_image();
-}
-
-function new_image()
+function take_snapshot()
 {
-	fabric.Image.fromURL("ball.png", function(Img) {
-	ball_obj = Img;
-	ball_obj.scaleToWidth(50);
-	ball_obj.scaleToHeight(50);
-	ball_obj.set({
-	top:ball_y,
-	left:ball_x
-	});
-	canvas.add(ball_obj);
-	});
+    Webcam.snap(function(data_uri) {
+        document.getElementById("result").innerHTML = '<img id="selfie_image" src="'+data_uri+'"/>';
+    });
 }
 
-window.addEventListener("keydown", my_keydown);
+  console.log('ml5 version:', ml5.version);
+  
+  // Initialize the Image Classifier method with MobileNet
+//classifier = ml5.imageClassifier('//model.json',modelLoaded);
+classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/5wlr_qb9M//model.json',modelLoaded);
 
-function my_keydown(e)
-{
-	keyPressed = e.keyCode;
-	console.log(keyPressed);
-	if((ball_x==hole_x)&&(ball_y==hole_y)){
-		canvas.remove(ball_obj);
-		console.log("You have Hit the Goal!!!");
-		document.getElementById("hd3").innerHTML="You have Hit the Goal!!!";
-	    document.getElementById("myCanvas").style.borderColor="red";
-	}
-	else{
-		if(keyPressed == '38')
-		{
-			up();
-			console.log("up");
-		}
-		if(keyPressed == '40')
-		{
-			down();
-			console.log("down");
-		}
-		if(keyPressed == '37')
-		{
-			left();
-			console.log("left");
-		}
-		if(keyPressed == '39')
-		{
-			right();
-			console.log("right");
-		}
-	}
-	
-	function up()
-	{
-		if(ball_y >=5)
-		{
-			ball_y = ball_y - block_image_height;
-			console.log("block image height = " + block_image_height);
-			console.log("When Up arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
-	}
+  // When the model is loaded
+  function modelLoaded() {
+    console.log('Model Loaded!');
+  }
+      
+  function check()
+  {
+    img = document.getElementById('selfie_image');
+    classifier.classify(img, gotResult);
+  }
 
-	function down()
-	{
-		if(ball_y <=450)
-		{
-			ball_y = ball_y + block_image_height;
-			console.log("block image height = " + block_image_height);
-			console.log("When Down arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
-	}
 
-	function left()
-	{
-		if(ball_x >5)
-		{
-			ball_x = ball_x - block_image_width;
-			console.log("block image width = " + block_image_width);
-			console.log("When Left arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
-	}
-
-	function right()
-	{
-		if(ball_x <=1050)
-		{
-			ball_x = ball_x + block_image_width;
-			console.log("block image width = " + block_image_width);
-			console.log("When Right arrow key is pressed, X =  " + ball_x + " , Y = "+ball_y);
-			canvas.remove(ball_obj);
-			new_image();
-		}
-	}
-	
+// A function to run when we get any errors and the results
+function gotResult(error, results) {
+  // Display error in the console
+  if (error) {
+    console.error(error);
+  } else {
+    // The results are in an array ordered by confidence.
+    console.log(results);
+    document.getElementById("result_object_name").innerHTML = results[0].label;
+    document.getElementById("result_object_accuracy").innerHTML = results[0].confidence.toFixed(3);
+  }
 }
-
