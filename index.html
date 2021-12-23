@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Recognizing Animals By Voice</title>
+        <title> Sound Controlled Animals </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -13,19 +13,32 @@
     </head>
 
     <body>
+        <center>
         <div class="container"> 
             <h2> Recognizing Animals By Voice</h2>
-            <p> Note: Audios are to be played for this app to function properly.</p>
+            <p> Note: Play different sounds like barking or meowing etc.</p>
         </div>
-        <div class="container">
-        <center>
-            <button id="detect" onclick="detect()"> Detect Audio </button>
+        <div class="container"></div>
+
+            <button id="detect" onclick="detect()"> Start </button>
+            <br>
+            <br>
+                <label> Detected Dog-</label>
+                <br>
+                <label>Detected Cat-</label>
+                <br>
+                <label> Detected Cow-</label>
+                <br>
+                <label> Detected Lion-</label>
+                <br>
+                <br>
+            <label> Detected Voice is of-</label>
             <h4 id="number_of_audio"> </h4>
             <h3 id="audio" class="container"> </h3>
-            <br>
-            <img src="ear.jpg" id="ear" height=30px width=30px>
+            <img src="dog.jpg" id="dog">
         </center>
         </div>
+        <label> DEVELOPED BY DAVINA😁</label>
         <div></div>
     </body>
 </html>
