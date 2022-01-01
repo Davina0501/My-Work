@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Sound Controlled Animals </title>
+        <title> Emotion to Emoji App! </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -11,34 +11,48 @@
     
        <link rel="stylesheet" href="style.css">
     </head>
-
     <body>
-        <center>
-        <div class="container"> 
-            <h2> Recognizing Animals By Voice</h2>
-            <p> Note: Play different sounds like barking or meowing etc.</p>
-        </div>
-        <div class="container"></div>
+        <div class="container">
+            <center>
+                <h3 class="bt btn warning heading"> 
+                    Gesture Web App
+                <br>
+                <span>👌</span>
+                <span>👏</span>
+                <span>🤞</span>
+                <span>👊</span>
+                <span>🤟</span>
+                <span>👍</span>
+                </h3>
+                <br>
+                <br>
+                <p style="font-size:22px;">Take a selfie of a gesture to know its meaning.
+                    <br>
+                    <b style="color:white">This model is trained to understand the following  emojis.</b>
+                    <br>
+                    <span> 👊 | ✌ | 👍 </span>
+                    <br>
 
-            <button id="detect" onclick="detect()"> Start </button>
-            <br>
-            <br>
-                <label> Detected Dog-</label>
-                <br>
-                <label>Detected Cat-</label>
-                <br>
-                <label> Detected Cow-</label>
-                <br>
-                <label> Detected Lion-</label>
-                <br>
-                <br>
-            <label> Detected Voice is of-</label>
-            <h4 id="number_of_audio"> </h4>
-            <h3 id="audio" class="container"> </h3>
-            <img src="dog.jpg" id="dog">
-        </center>
+                </p>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                <label> WEBCAM VIEW </label>
+                <div id="camera"></div>
+                    <br>
+                    <br>
+                    <button onclick="take_snapshot()" class="btn btn-warning"> Capture Image </button>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <label> Prediction-</label>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                <label> Snapshot </label>
+                <div id="result"> </div>
+                    <br>
+                    <br>
+                    <button onclick="check()" class="btn btn-success"> Predict Emotion </button>
+                </div>
+            </center>
         </div>
-        <label> DEVELOPED BY DAVINA😁</label>
-        <div></div>
     </body>
+    <script src="main.js"></script>
 </html>
