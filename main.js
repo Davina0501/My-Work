@@ -1,70 +1,33 @@
-x = 0;
-y = 0;
-screen_width=0;
-screen_height=0;
-apple="";
-speak_data="";
-to_number="";
+difference=0;
 
-draw_apple = "";
+rightwristX=0;
 
-var SpeechRecognition = window.webkitSpeechRecognition;
-  
-var recognition = new SpeechRecognition();
+leftwristX=0;
 
-function preload(){
-  apple= loadImage("https://i.postimg.cc/Wp9TGGJz/apple.png")
-}
+function setup(){
 
-function start()
-{
-  document.getElementById("status").innerHTML = "System is listening please speak";  
-  recognition.start();
-} 
- 
-recognition.onresult = function(event) {
-
- to_number= Number(content);
-
- if(Number.isInteger(to_number));
-
- console.log(event); 
-
- content = event.results[0][0].transcript;
-
-    document.getElementById("status").innerHTML = "The speech has been recognized: " + content; 
+    video=createCapture(VIDEO);
+    video.size(550,500);
+    canvas=createCanvas(550,550);
+    canvas.position(560,150);
+    poseNet=ml5.poseNet(video,modelLoaded);
+    poseNet.on('pose',gotPoses);
 
 }
 
-function setup() {
 
-  screen_width = window.innerWidth;
-  screen_height = window.innerHeight;
-  canvas = createCanvas(screen_width,screen_height-150)
-  canvas.position(0,150)
- 
+function modelLoaded(){
+
+    console.log("PoseNet is initialized");
+
 }
 
-function draw() {
-  if(draw_apple == "set")
-  for(var i=1; i <=to_number; i++)
-  {
-    x = Math.floor(Math.random()*700)
-    y = Math.floor(Math.random()*400)
-    image(apple , x , y, 50 , 50)
-  }
-  {
-    document.getElementById("status").innerHTML = to_number + " Apples drawn";
-    draw_apple = "";
-  }
-}
+function gotPoses(results){
 
-function speak(){
-    var synth = window.speechSynthesis;
-
-    var utterThis = new SpeechSynthesisUtterance(speak_data);
-
-    synth.speak(utterThis);
-
-    speak_data = "";
+    if(results.length>0){console.log(results)}
+    console.log("noseX = " + noseX +" noseY = " + noseY);
+    leftwristX=results[0].pose.leftWrist.x;
+    rightwristX=results[0].pose.rightWrist.x;
+    difference=floor(leftwristX-rightwristX);
+    console.log("leftwristX = " + leftwristX + " rightwristX = "+ rightwristX + " difference = " + difference);
 }
