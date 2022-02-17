@@ -1,66 +1,23 @@
 <html>
-    <head>
-        <title> C120 </title>
+  <head>
+    <title>Voice Command Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
-        <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
 
-    </head>
+  <body>
+    <h3>Voice Command Canvas</h3>
 
-    <body>
-        <center>
-            <h2> Case Study Between Google Lens and Mobile Net</h2>
-            <br>
-            <span>
-                <label> Google Lens </label>
-                <img src="download.png">
-            </span>
-            <div>
-                <label> VS </label>
-                <br>
-                <br>
-                <button class="btn btn-success"> Mobilenet </button>
-            </div>
-
-            <br>
-            
-
-            <ol>
-              <div class="test_image_and_result col-xs-12">
-              <li class="col-sm-4 col-xs-12">
-                  <b> Test Image- </b>
-                  <img src="bottle.jpg" class="img-responsive">
-                  </li>
-
-                  <h5 class="col-sm-4 col-xs-12">
-                      Output On<b> GOOGLE LENS </b> 
-                      <span> Water Bottle </span>
-                  </h5>
-
-                  <h5 class="col-sm-4 col-xs-12">
-                      Output On<b> Mobilenet Model </b>
-                      <span> Water Bottle </span>
-                  </h5>
-
-                  <br>
-                  <hr>
-                  
-
-                  <div class="mini_result" class="col-xs-12">
-                      <h4> Result- The two programs are both the same and have identified the object as a water bottle. </h4>
-                      <h4></h4>
-                  </div>
-
-                  </div>
-                  <br>
-            </ol>
-
-        
-        </center>
-    </body>
+    <span id="status"></span> 
+    <button onclick="start();" class="btn btn-success">Draw</button>
+    <br><br>
+<script src="main.js"></script>
+  </body>
 </html>
+
