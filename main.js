@@ -25,9 +25,16 @@ function modelLoaded(){
 function gotPoses(results){
 
     if(results.length>0){console.log(results)}
-    console.log("noseX = " + noseX +" noseY = " + noseY);
     leftwristX=results[0].pose.leftWrist.x;
     rightwristX=results[0].pose.rightWrist.x;
     difference=floor(leftwristX-rightwristX);
     console.log("leftwristX = " + leftwristX + " rightwristX = "+ rightwristX + " difference = " + difference);
+}
+
+function draw(){
+
+    background('#969A97');
+    textSize(difference);
+    fill('#FFE787')
+    text('Davina', 50, 400)
 }
