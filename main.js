@@ -1,40 +1,21 @@
-difference=0;
-
-rightwristX=0;
-
-leftwristX=0;
+music_1="";
+music_2="";
 
 function setup(){
-
+    canvas=createCanvas(600,500);
+    canvas.center();
+    background("pink");
     video=createCapture(VIDEO);
-    video.size(550,500);
-    canvas=createCanvas(550,550);
-    canvas.position(560,150);
-    poseNet=ml5.poseNet(video,modelLoaded);
-    poseNet.on('pose',gotPoses);
-
+    video.hide();
 }
 
-
-function modelLoaded(){
-
-    console.log("PoseNet is initialized");
-
-}
-
-function gotPoses(results){
-
-    if(results.length>0){console.log(results)}
-    leftwristX=results[0].pose.leftWrist.x;
-    rightwristX=results[0].pose.rightWrist.x;
-    difference=floor(leftwristX-rightwristX);
-    console.log("leftwristX = " + leftwristX + " rightwristX = "+ rightwristX + " difference = " + difference);
+function preload(){
+    music_1= loadSound("music.mp3");
+    music_2= loadSound("music2.mp3");
 }
 
 function draw(){
-
-    background('#969A97');
-    textSize(difference);
-    fill('#FFE787')
-    text('Davina', 50, 400)
+    image(video,0,0,600,500);
+    fill("#FF0000");
+    stroke("#FF0000");
 }
