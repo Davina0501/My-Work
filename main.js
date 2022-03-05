@@ -4,6 +4,8 @@ rightwristX=0;
 rightwristY=0;
 leftwristX=0;
 leftwristY=0;
+song1_status="";
+song2_status="";
 
 function setup(){
     canvas=createCanvas(600,500);
@@ -24,6 +26,9 @@ function draw(){
     image(video,0,0,600,500);
     fill("#FF0000");
     stroke("#FF0000");
+    circle(leftwristX,leftwristY,20);
+    song1_status=music_1.isPlaying();
+    song2_status=music_2.isPlaying();
 }
 
 function modelLoaded(){
@@ -39,6 +44,7 @@ function gotPoses(results){
         rightwristY=results[0].pose.rightWrist.y;
         leftwristX=results[0].pose.leftWrist.x;
         leftwristY=results[0].pose.leftWrist.y;
+        scoreleftwrist=results[0].pose.keypoints[9].score;
         console.log("rightwrsitX" + rightwristX + "rigthwristY" + rightwristY);
         console.log("leftwristX" + leftwristX + "leftwristY" + leftwristY);
     }
